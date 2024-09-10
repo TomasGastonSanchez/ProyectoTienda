@@ -1,41 +1,48 @@
 package Entidades;
+
 import jakarta.persistence.*;
 
 @Entity
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int Id ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Cambiado a IDENTITY
+    private Long Id; // Cambiado a Long
+
     @Column
     private String Nombre;
+
     @Column
-    private String Apellido ;
+    private String Apellido;
+
     @Column
     private String Localidad;
+
     @Column
     private int Telefono;
 
-    public Cliente(int id, String nombre, String apellido, String localidad, int telefono) {
-        Id = id;
-        Nombre = nombre;
-        Apellido = apellido;
-        Localidad = localidad;
-        Telefono = telefono;
+    // Constructor con parámetros (opcional, si lo necesitas)
+    public Cliente(String nombre, String apellido, String localidad, int telefono) {
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Localidad = localidad;
+        this.Telefono = telefono;
     }
 
+    // Constructor por defecto
     public Cliente() {
     }
 
-    public int GetId(){ return Id;}
-    public String GetNombre(){ return Nombre;}
-    public String GetApellido(){ return Apellido;}
-    public String GetLocalidad(){ return Localidad;}
-    public int GetTelefono(){ return Telefono;}
+    // Getters
+    public Long getId() { return Id; }
+    public String getNombre() { return Nombre; }
+    public String getApellido() { return Apellido; }
+    public String getLocalidad() { return Localidad; }
+    public int getTelefono() { return Telefono; }
 
-    public void SetId(){this.Id=Id;}
-    public void SetNombre(String s){this.Nombre= Nombre; }
-    public void SetApellido(String s){this.Apellido= Apellido; }
-    public void SetLocalidad(String s) {this.Localidad= Localidad;}
-    public void SetTelefono(int i){ this.Telefono = Telefono;}
-    
+    // Setters
+    public void setId(Long id) { this.Id = id; } // Asignar correctamente
+    public void setNombre(String nombre) { this.Nombre = nombre; } // Asignar correctamente
+    public void setApellido(String apellido) { this.Apellido = apellido; } // Asignar correctamente
+    public void setLocalidad(String localidad) { this.Localidad = localidad; } // Asignar correctamente
+    public void setTelefono(int telefono) { this.Telefono = telefono; } // Asignar correctamente
 }

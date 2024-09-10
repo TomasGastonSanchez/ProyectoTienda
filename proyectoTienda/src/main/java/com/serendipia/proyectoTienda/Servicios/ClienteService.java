@@ -5,7 +5,6 @@ import com.serendipia.proyectoTienda.Repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +27,13 @@ public class ClienteService {
     }
 
     public Cliente actualizarCliente(Long id, Cliente clienteDetalles) {
-        Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        cliente.SetNombre(clienteDetalles.GetNombre());
-        cliente.SetApellido(clienteDetalles.GetApellido());
-        cliente.SetLocalidad(clienteDetalles.GetLocalidad());
-        cliente.SetTelefono(clienteDetalles.GetTelefono());
+        cliente.setNombre(clienteDetalles.getNombre());
+        cliente.setApellido(clienteDetalles.getApellido());
+        cliente.setLocalidad(clienteDetalles.getLocalidad());
+        cliente.setTelefono(clienteDetalles.getTelefono());
 
         return clienteRepository.save(cliente);
     }
@@ -41,8 +41,4 @@ public class ClienteService {
     public void eliminarCliente(Long id) {
         clienteRepository.deleteById(id);
     }
-
-
-
 }
-
