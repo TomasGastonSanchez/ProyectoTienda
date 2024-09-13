@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "8c378264-0c7e-4810-ad06-279cccc0a10a",
+		"name": "Tienda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37792713"
+	},
+	"item": [
+		{
+			"name": "Eliminar Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":1,\r\n    \"Nombre\":\"sa\",\r\n    \"Apellido\":\"sa\",\r\n    \"Localidad\":\"rosario\",\r\n    \"Telefono\": 123\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/clientes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Conseguir Cliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/clientes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Nuevo Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":1,\r\n    \"Nombre\":\"sa\",\r\n    \"Apellido\":\"sa\",\r\n    \"Localidad\":\"rosario\",\r\n    \"Telefono\": 123\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/clientes"
+			},
+			"response": []
+		}
+	]
+}
