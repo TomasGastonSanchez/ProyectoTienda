@@ -3,6 +3,7 @@ package com.serendipia.proyectoTienda.Controller;
 import Entidades.Cliente;
 import com.serendipia.proyectoTienda.Servicios.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,10 +38,16 @@ public class ClienteController {
         }
     }
 
+    //@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    //public Cliente crearCliente(@RequestBody Cliente cliente) {
+    //    return clienteService.crearCliente(cliente);
+    //}
+
     @PostMapping
     public Cliente crearCliente(@RequestBody Cliente cliente) {
         return clienteService.crearCliente(cliente);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @RequestBody Cliente clienteDetalles) {

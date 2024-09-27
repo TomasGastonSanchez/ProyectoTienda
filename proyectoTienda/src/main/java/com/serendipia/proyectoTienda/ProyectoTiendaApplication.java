@@ -5,7 +5,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.web.bind.annotation.RestController;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EntityScan(basePackages = "Entidades")
 @SpringBootApplication(scanBasePackages = "com.serendipia.proyectoTienda")
@@ -13,6 +25,17 @@ public class ProyectoTiendaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoTiendaApplication.class,args);
+
+
+	}
+	@EnableWebSecurity
+	@Configuration
+	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.authorizeRequests().anyRequest().authenticated();
+		}
 	}
 
 }
@@ -22,7 +45,6 @@ public class ProyectoTiendaApplication {
 //jdbc:h2:mem:testdb
 //http://localhost:8080/api/nombre del get
 //{
-//    "Id":1,
 //    "Nombre":"sa",
 //    "Apellido":"sa",
 //    "Localidad":"rosario",
