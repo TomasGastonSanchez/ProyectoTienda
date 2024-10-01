@@ -1,9 +1,13 @@
 package com.serendipia.proyectoTienda;
 
+import com.serendipia.proyectoTienda.Servicios.JWTAuthorizationFilter;
 import jakarta.websocket.server.ServerEndpoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.RestController;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,8 +20,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @EntityScan(basePackages = "Entidades")
 @SpringBootApplication(scanBasePackages = "com.serendipia.proyectoTienda")
@@ -28,16 +36,29 @@ public class ProyectoTiendaApplication {
 
 
 	}
-	@EnableWebSecurity
 	@Configuration
-	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@EnableWebSecurity
+	public class WebSecurityConfig {
 
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			http.authorizeRequests().anyRequest().authenticated();
+		@Bean
+		public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+			http
+					.authorizeRequests(authorize -> authorize
+							.anyRequest().authenticated()
+					)
+					.addFilterBefore(JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class); // Agregar tu filtro de JWT
+
+			return http.build();
 		}
-	}
 
+		@Bean
+		public JWTAuthorizationFilter JWTAuthorizationFilter() {
+
+			return new JWTAuthorizationFilter ();
+		}
+
+
+	}
 }
 ////http://26.198.47.254:8082/login.do?jsessionid=e4fcda605db7ddafab790ab371937f39 (link a h2)
 //jdbc:h2:tcp://localhost/~/hola
