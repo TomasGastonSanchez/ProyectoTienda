@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.serendipia.proyectoTienda.Servicios.JWTAuthorizationFilter;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -27,6 +28,10 @@ public class ClienteController {
         return clienteService.obtenerTodos();
     }
 
+    @CrossOrigin(origins = "*",
+            methods = {RequestMethod.GET, RequestMethod.POST},
+            allowedHeaders = "*",
+            allowCredentials = "false")
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> obtenerPorId(@PathVariable Long id) {
         Optional<Cliente> cliente = clienteService.obtenerPorId(id);

@@ -31,6 +31,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, jakarta.servlet.FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
         try {
+            // Permitir acceso sin token a la ruta /login
+            if (request.getRequestURI().equals("/api/user")) {
+                filterChain.doFilter(request, response); // continuar sin filtrar
+                return;
+            }
+            // Comprobar si hay un token JWT
             if (existeJWTToken((HttpServletRequest) request, (HttpServletResponse) response)) {
                 Claims claims = validateToken((HttpServletRequest) request);
                 if (claims.get("authorities") != null) {
@@ -47,6 +53,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
             return;
         }
+
     }
 
     private Claims validateToken(HttpServletRequest request) {

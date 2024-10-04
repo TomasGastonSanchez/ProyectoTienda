@@ -43,10 +43,11 @@ public class ProyectoTiendaApplication {
 		@Bean
 		public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			http
-					.authorizeRequests(authorize -> authorize
-							.anyRequest().authenticated()
-					)
-					.addFilterBefore(JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class); // Agregar tu filtro de JWT
+					.authorizeRequests()
+					.requestMatchers(HttpMethod.POST, "/api/user").permitAll() // Permitir acceso a esta ruta
+					.anyRequest().authenticated() // Todas las demás solicitudes requieren autenticación
+					.and()
+					.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 			return http.build();
 		}

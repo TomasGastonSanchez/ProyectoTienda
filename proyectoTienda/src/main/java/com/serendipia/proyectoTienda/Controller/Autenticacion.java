@@ -1,6 +1,6 @@
 package com.serendipia.proyectoTienda.Controller;
 
-import Entidades.User;
+import Entidades.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +18,14 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @RestController
 public class Autenticacion {
-    @PostMapping("user")
-    public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+    @PostMapping("/api/user")
+    public Usuario login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 
         String token = getJWTToken(username);
-        User user = new User();
-        user.setUser(username);
+        Usuario user = new Usuario();
+        user.setUsername(username);
         user.setToken(token);
+
         return user;
 
     }
