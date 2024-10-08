@@ -13,22 +13,46 @@ import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @RestController
 public class Autenticacion {
+
+    // Cambia el método login así:
     @PostMapping("/api/user")
-    public Usuario login(@RequestParam("user") String username, @RequestParam("password") String password ) {
-
-        String token = getJWTToken(username);
+    public Usuario login(@RequestBody UsuarioLoginRequest request) {
+        String token = getJWTToken(request.getUsername());
         Usuario user = new Usuario();
-        user.setUsername(username);
+        user.setUsername(request.getUsername());
         user.setToken(token);
-
         return user;
-
     }
+
+    // Clase para recibir la solicitud
+    public static class UsuarioLoginRequest {
+        private String username;
+        private String password;
+
+        // Getters y setters
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+    }
+
 
     private String getJWTToken(String username) {
         String secretKey = "mySecretKey";
