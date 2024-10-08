@@ -33,7 +33,6 @@ public class UserService {
 
         user.setUsername(userDetalles.getUsername());
         user.setPassword(userDetalles.getPassword());
-        user.setPermiso(userDetalles.getPermiso());
 
         return userRepository.save(user);
     }

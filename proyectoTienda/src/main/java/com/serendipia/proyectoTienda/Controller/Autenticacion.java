@@ -19,7 +19,7 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 @RestController
 public class Autenticacion {
     @PostMapping("/api/user")
-    public Usuario login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+    public Usuario login(@RequestParam("user") String username, @RequestParam("password") String password ) {
 
         String token = getJWTToken(username);
         Usuario user = new Usuario();

@@ -11,15 +11,12 @@ public class Usuario {
     @Column
     private String password;
     @Column
-    private int permiso;
-    @Column
     private String token;
 
     // Constructor
     public Usuario(String username, String password,int permiso) {
         this.username = username;
         this.password = password;
-        this.permiso = permiso;
     }
 
     public Usuario() {
@@ -41,14 +38,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getPermiso() {
-        return permiso;
-    }
-
-    public void setPermiso(int permiso) {
-        this.permiso = permiso;
     }
 
     public Long getId() {
