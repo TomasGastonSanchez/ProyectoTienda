@@ -30,6 +30,12 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoibWF0aWFzIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTcyODk4OTk3NiwiZXhwIjoxNzI4OTkwNTc2fQ.cmTXN9hA6bOyhJQVuAU7Id3cZ3uK1-97JHW0JmoWOKSW4CsHYZJ2JEqUI3Kqh7MNUkYEjOxBlxaoNHHsP1n12Q"
+					}
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -48,11 +54,17 @@
 		{
 			"name": "Nuevo Cliente",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoibWF0aWFzIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTcyODk4OTk3NiwiZXhwIjoxNzI4OTkwNTc2fQ.cmTXN9hA6bOyhJQVuAU7Id3cZ3uK1-97JHW0JmoWOKSW4CsHYZJ2JEqUI3Kqh7MNUkYEjOxBlxaoNHHsP1n12Q"
+					}
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Id\":1,\r\n    \"Nombre\":\"sa\",\r\n    \"Apellido\":\"sa\",\r\n    \"Localidad\":\"rosario\",\r\n    \"Telefono\": 123\r\n    }",
+					"raw": "{\r\n    \"apellido\":\"facciano\",\r\n    \"localidad\":\"rosario\",\r\n    \"nombre\":\"matias\",\r\n    \"telefono\": 12223\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,6 +72,24 @@
 					}
 				},
 				"url": "http://localhost:8080/api/clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "crear JWT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"matias\",\r\n    \"password\":\"1234\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/user"
 			},
 			"response": []
 		}
