@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @RestController
@@ -26,6 +27,7 @@ public class Autenticacion {
         String token = getJWTToken(request.getUsername());
         Usuario user = new Usuario();
         user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
         user.setToken(token);
         return user;
     }
@@ -52,6 +54,7 @@ public class Autenticacion {
             this.password = password;
         }
     }
+
 
 
     private String getJWTToken(String username) {

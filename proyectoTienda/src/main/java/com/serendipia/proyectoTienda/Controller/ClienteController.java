@@ -12,7 +12,7 @@ import java.util.Optional;
 import com.serendipia.proyectoTienda.Servicios.JWTAuthorizationFilter;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/api/token-requerido/clientes")
 public class ClienteController {
     //GET para obtener información, POST para enviar datos, PUT para actualizar información o DELETE para eliminar datos.
 //GET Read data
