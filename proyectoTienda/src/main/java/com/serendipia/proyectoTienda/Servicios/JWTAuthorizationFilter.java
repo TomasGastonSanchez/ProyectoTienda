@@ -21,6 +21,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import  com.serendipia.proyectoTienda.Controller.*;
 
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
@@ -97,12 +98,16 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 .getBody();
     }
 
-    private boolean validateSimpleToken(String token) {
-        // Definir el token válido
-        String validToken = "hola"; // Este valor puede ser una constante o configurado externamente
+    private String validToken; // Almacena el token válido
 
-        // Comprobar si el token recibido es igual al token válido
-        return validToken.equals(token);
+    public void generateValidToken() {
+        int numero = (int) (Math.random() * 1000) + 1;
+        validToken = String.valueOf(numero); // Convertir a String
+    }
+
+    private boolean validateSimpleToken(String token) {
+        String validToken= "hola";
+        return "hola".equals(token);
     }
 
     private void setUpSpringAuthentication(Claims claims) {

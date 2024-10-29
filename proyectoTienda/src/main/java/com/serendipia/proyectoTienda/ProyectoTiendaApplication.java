@@ -45,7 +45,8 @@ public class ProyectoTiendaApplication {
 			http
 					.csrf(csrf -> csrf.disable())
 					.authorizeRequests()
-					.requestMatchers(HttpMethod.POST, "/api/user").permitAll() // Permitir acceso a esta ruta
+					.requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+					.requestMatchers(HttpMethod.POST, "/api/login").permitAll() // Permitir acceso a esta ruta
 					.requestMatchers("/api/protegida").authenticated() // Ruta que requiere autenticación con JWT
 					.requestMatchers("/api/token-requerido").authenticated() // Ruta que requiere el token simple
 					.anyRequest().authenticated() // Todas las demás solicitudes requieren autenticación

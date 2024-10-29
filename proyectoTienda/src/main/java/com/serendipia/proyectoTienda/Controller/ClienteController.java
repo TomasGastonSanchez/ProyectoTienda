@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import com.serendipia.proyectoTienda.Servicios.JWTAuthorizationFilter;
 
@@ -53,6 +54,17 @@ public class ClienteController {
         return clienteService.crearCliente(cliente);
     }
 
+    @PostMapping("/map")
+    public String crearCliente(@RequestBody Map<String, Object> request) {
+        if (!request.containsKey("nombre")) {
+            return "Acceso negado.";
+        }
+        // Suponiendo que quieres crear un cliente con la información del mapa
+        String nombre = (String) request.get("nombre");
+        // Aquí podrías crear el cliente usando el nombre y otros datos que tengas en el mapa
+        // clienteService.crearCliente(new Cliente(nombre, ...));
+        return "Cliente creado: " + nombre + clienteService.crearCliente(new Cliente());
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @RequestBody Cliente clienteDetalles) {
