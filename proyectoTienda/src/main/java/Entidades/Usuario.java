@@ -16,11 +16,12 @@ public class Usuario {
     private String ROLL;
 
 
-    // Constructor
+     //Constructor
     public Usuario(String username, String password,int permiso) {
         this.username = username;
         this.password = password;
     }
+
 
     public Usuario(String username, String password,String ROLL) {
         this.username = username;

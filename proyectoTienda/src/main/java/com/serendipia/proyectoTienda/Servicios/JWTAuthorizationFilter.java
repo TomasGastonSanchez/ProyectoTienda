@@ -29,7 +29,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
     private final String PREFIX_JWT = "Bearer ";
     private final String PREFIX_TOKEN = "Token "; // Token simple
-    private final String SECRET = "mySecretKey"; // Asegúrate de usar un enfoque más seguro para las claves
+    private final String SECRET = JWTConfig.SECRET_KEY;// Asegúrate de usar un enfoque más seguro para las claves
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -76,12 +76,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // Estado 401
                 return;
             }
-        }
-        // Si no contiene ningún token, limpiamos el contexto de seguridad
-        else {
-            SecurityContextHolder.clearContext();
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // Estado 401
-            return;
         }
 
         filterChain.doFilter(request, response);

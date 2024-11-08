@@ -1,12 +1,10 @@
 package com.serendipia.proyectoTienda.Controller;
-
 import Entidades.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.Key;
@@ -14,14 +12,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
 import io.jsonwebtoken.impl.crypto.MacProvider;
+
+//Este controlador es una clase que maneja las solicitudes relacionadas con la autenticación.
+// El controlador usa el decorador @RestController, lo cual permite exponer endpoints
+// HTTP que devuelven datos JSON.
 
 @RestController
 public class Autenticacion {
 
-    // Cambia el método login así:
     @PostMapping("/api/user")
     public Usuario login(@RequestBody UsuarioLoginRequest request) {
         String token = getJWTToken(request.getUsername());
@@ -55,8 +54,6 @@ public class Autenticacion {
         }
     }
 
-
-
     private String getJWTToken(String username) {
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
@@ -77,6 +74,4 @@ public class Autenticacion {
 
         return "Bearer " + token;
     }
-
-
 }

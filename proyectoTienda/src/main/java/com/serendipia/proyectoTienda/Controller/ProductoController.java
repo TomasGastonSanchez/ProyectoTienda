@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController //responderá a solicitudes HTTP y devolverá respuestas en formato JSON.
 @RequestMapping("api/producto")
 public class ProductoController {
     @Autowired
@@ -16,7 +16,5 @@ public class ProductoController {
     public ResponseEntity<Producto> registrarProducto(@RequestBody Producto producto) {
         return ResponseEntity.ok(productoService.guardar(producto));
     }
-
-
 
 }

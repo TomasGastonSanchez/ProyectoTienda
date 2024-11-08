@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -38,8 +39,11 @@ public class CustomUserDetailsService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority(role.trim())); // Agregar el rol como SimpleGrantedAuthority
             }
         }
-
         // Retornar el UserDetails con roles y otras credenciales
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
+    // Ejemplo de método para obtener usuarios por rol
+    public List<Usuario> getUsersByRole(String ROLL) {
+        return userRepository.findByROLL(ROLL);
     }
 }
