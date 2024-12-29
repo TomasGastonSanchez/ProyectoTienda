@@ -21,7 +21,7 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 @RestController
 public class Autenticacion {
 
-    // Cambia el método login así:
+    // Metodo login así:
     @PostMapping("/api/user")
     public Usuario login(@RequestBody UsuarioLoginRequest request) {
         String token = getJWTToken(request.getUsername());

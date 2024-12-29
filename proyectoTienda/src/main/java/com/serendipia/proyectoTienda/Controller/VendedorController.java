@@ -26,6 +26,7 @@ public class VendedorController {
 
         if (vendedor.isPresent()) {
             return ResponseEntity.ok(vendedor.get());
+
         } else {
             return ResponseEntity.notFound().build();
         }

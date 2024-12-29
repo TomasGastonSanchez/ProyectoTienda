@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@EntityScan(basePackages = "Entidades")
+@EntityScan(basePackages = "Entidades") //activa la configuracion
 @SpringBootApplication(scanBasePackages = "com.serendipia.proyectoTienda")
 public class ProyectoTiendaApplication {
 
@@ -42,7 +42,7 @@ public class ProyectoTiendaApplication {
 
 	}
 	@Configuration
-	@EnableWebSecurity
+	@EnableWebSecurity //activa la configuracion de seguridad
 	public class WebSecurityConfig {
 
 		@Autowired
@@ -53,8 +53,8 @@ public class ProyectoTiendaApplication {
 			http
 					.csrf(csrf -> csrf.disable())  // Deshabilitar CSRF si es necesario
 					.authorizeRequests(authz -> authz
-							.requestMatchers(HttpMethod.POST, "/api/user").permitAll()  // Permitir acceso a /api/user sin autenticación
-							.requestMatchers(HttpMethod.POST, "/api/login").permitAll() // Permitir acceso a /api/login sin autenticación
+							.requestMatchers(HttpMethod.POST, "/api/user").permitAll()  // Permitir acceso a /api/user sin  SIN ROLES
+							.requestMatchers(HttpMethod.POST, "/api/login").permitAll() // Permitir acceso a /api/login sin autenticación CON ROLES
 							.requestMatchers("/api/usuario/hola").hasAuthority("ROLE_USER")// Solo los usuarios con el rol ROLL_USER pueden acceder
 							.requestMatchers("/api/usuario/tu").hasAuthority("ROLE_ADMIN")
 							//.requestMatchers("/usu/**").hasAnyRole("USER", "ADMIN")  // Los roles USER y ADMIN pueden acceder a /usu/**
